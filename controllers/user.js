@@ -78,7 +78,7 @@ module.exports = {
 
       const payload = {
         user: {
-          id: user.id,
+          id_user: user.id,
           username: user.username,
         },
       };
@@ -138,7 +138,7 @@ module.exports = {
 
       const payload = {
         user: {
-          id: user.id,
+          id_user: user.id,
         },
       };
 
