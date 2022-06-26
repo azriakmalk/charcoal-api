@@ -1,17 +1,17 @@
 # charcoal-api
-.env :
+.env :{
 
-  db=""
+    db=""
   
-  user=""
+    user=""
   
-  pw=""
+    pw=""
   
-  host=""
+    host=""
   
-  dialect=""
+    dialect=""
   
-  timezone=""
+    timezone=""
   
-  SECRET_KEY=""
-  
+    SECRET_KEY=""  
+  }
