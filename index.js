@@ -8,6 +8,7 @@ const categoryRoutes = require("./routes/category");
 const kilnRoutes = require("./routes/kiln_process");
 const levelRoutes = require("./routes/level");
 const transactionRoutes = require("./routes/transaction");
+const dashboardRoutes = require("./routes/dashboard");
 const db = require("./config/database");
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,6 +30,7 @@ app.use("/level", levelRoutes);
 app.use("/category", categoryRoutes);
 app.use("/kiln", kilnRoutes);
 app.use("/transaction", transactionRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 app.listen(port, async () => {
   try {
