@@ -1,14 +1,5 @@
-const m_users = require("../models/m_users");
-const m_level = require("../models/m_level");
 const m_item = require("../models/m_item");
 const storage = require("../models/storage");
-const sequelize = require("../config/database");
-const { validationResult } = require("express-validator");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const JWT_KEY = process.env.SECRET_KEY;
-const { Op } = require("sequelize");
-const { raw } = require("body-parser");
 
 module.exports = {
   getDashboard: async (req, res) => {
