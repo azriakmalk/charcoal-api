@@ -75,6 +75,12 @@ module.exports = {
           total_weight = data_storage[i].total_weight + Number(weight);
         } else {
           total_weight = data_storage[i].total_weight - Number(weight);
+          if (total_weight < 0) {
+            await transaction.rollback();
+            res.status(200).json({
+              message: "Raw Material tidak cukup",
+            });
+          }
         }
         await storage.update(
           { total_weight },

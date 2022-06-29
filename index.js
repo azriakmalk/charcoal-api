@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const port = 3000;
+const port = process.argv[2] || 3000;
 const userRoutes = require("./routes/user");
 const itemRoutes = require("./routes/item");
 const categoryRoutes = require("./routes/category");
