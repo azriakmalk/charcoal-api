@@ -91,6 +91,7 @@ module.exports = {
         user: {
           id_user: user.id,
           username: user.username,
+          role: user.role
         },
       };
 
