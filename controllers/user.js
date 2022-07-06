@@ -50,9 +50,20 @@ module.exports = {
         });
       }
 
+      m_level.hasMany(m_users, { foreignKey: "id_level" });
+      m_users.belongsTo(m_level, { foreignKey: "id_level" });
+
       const { username, password } = req.body;
 
-      let user = await m_users.findOne({ raw: true, where: { username } });
+      let user = await m_users.findOne({
+        raw: true,
+        attributes: [
+          sequelize.col("m_users.*"),
+          [sequelize.col("m_level.name"), "role"],
+        ],
+        include: [{ model: m_level, attributes: [] }],
+        where: { username },
+      });
 
       if (!user) {
         return res.status(400).json({
