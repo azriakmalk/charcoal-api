@@ -57,7 +57,6 @@ module.exports = {
   saveItem: async (req, res) => {
     const transaction = await sequelize.transaction();
     try {
-      console.log(req.body);
       const { name, id_category, id_raw } = req.body;
 
       const saveItem = await m_item.create(
