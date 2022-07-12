@@ -9,6 +9,7 @@ const kilnRoutes = require("./routes/kiln_process");
 const levelRoutes = require("./routes/level");
 const transactionRoutes = require("./routes/transaction");
 const dashboardRoutes = require("./routes/dashboard");
+const documentRoutes = require("./routes/document");
 const db = require("./config/database");
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,6 +32,7 @@ app.use("/category", categoryRoutes);
 app.use("/kiln", kilnRoutes);
 app.use("/transaction", transactionRoutes);
 app.use("/dashboard", dashboardRoutes);
+app.use("/download", documentRoutes);
 
 app.listen(port, async () => {
   try {
