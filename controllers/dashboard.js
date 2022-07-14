@@ -16,7 +16,7 @@ module.exports = {
       dataItem.forEach((item) => {
         let itemStorage = dataStorage.find((data) => data.id_item === item.id);
         if (item.id_category === 1) {
-          notif = itemStorage.total_weight > 56315 ? `Available stock is safe` : `Available stock (${item.name}) is not safe, make purchases of raw materials`;
+          notif = itemStorage.total_weight > 56315 ? `Available stock is safe` : `Stock is running low, time to buy Raw Material`;
           raw_materials.push({
             ...item,
             notif,
