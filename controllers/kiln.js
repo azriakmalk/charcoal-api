@@ -36,10 +36,28 @@ module.exports = {
         ],
       });
 
-      const items = await m_item.findAll({
+      let items = await m_item.findAll({
         raw: true,
         where: { id_category: 2 },
       });
+
+      const id_raw = items.map((item) => {return item.id});
+
+      const formulaa = await formula.findAll({
+        raw: true,
+        where: {id_header : id_raw}
+      });
+
+      const stock = await storage.findAll({
+        raw: true,
+        where: {id_item : formulaa.map((fm)=>{return fm.id_raw})}
+      });
+
+      for(let i in items){
+        let raw = formulaa.find(fm => fm.id_header === items[i].id);
+        let stock_raw = stock.find(st => st.id_item === raw.id_raw);
+        items[i].stock_raw = stock_raw.total_weight;
+      };
 
       res.status(200).json({
         message: "Berhasil Get Kiln",

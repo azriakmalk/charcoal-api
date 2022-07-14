@@ -3,7 +3,7 @@ const router = express.Router();
 const kiln = require('../controllers/kiln');
 const auth = require('../middleware/user');
 
-router.get('/',auth,kiln.getKiln);
+router.get('/',kiln.getKiln);
 
 router.post('/add',auth,kiln.saveKiln);
 
