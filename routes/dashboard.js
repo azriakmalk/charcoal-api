@@ -3,7 +3,7 @@ const router = express.Router();
 const dashboard = require("../controllers/dashboard");
 const auth = require("../middleware/user");
 
-router.get("/", auth, dashboard.getDashboard);
+router.get("/", dashboard.getDashboard);
 
 // router.post('/add',auth,level.saveLevel);
 
