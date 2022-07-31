@@ -8,6 +8,7 @@ const categoryRoutes = require("./routes/category");
 const kilnRoutes = require("./routes/kiln_process");
 const levelRoutes = require("./routes/level");
 const transactionRoutes = require("./routes/transaction");
+const transactionRoutes = require("./routes/sale");
 const dashboardRoutes = require("./routes/dashboard");
 const documentRoutes = require("./routes/document");
 const db = require("./config/database");
@@ -31,6 +32,7 @@ app.use("/level", levelRoutes);
 app.use("/category", categoryRoutes);
 app.use("/kiln", kilnRoutes);
 app.use("/transaction", transactionRoutes);
+app.use("/sale", saleRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/download", documentRoutes);
 
