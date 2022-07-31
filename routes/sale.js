@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const transaction = require("../controllers/sale");
+const sale = require("../controllers/sale");
 const auth = require("../middleware/user");
 
-router.get("/", auth, transaction.getSale);
+router.get("/", auth, sale.getSale);
 
-router.post("/add", auth, transaction.saveSale);
+router.post("/add", auth, sale.saveSale);
 
-// router.post("/edit", auth, transaction.editTransaction);
+// router.post("/edit", auth, sale.editTransaction);
 
-router.post("/delete", auth, transaction.deleteSale);
+router.post("/delete", auth, sale.deleteSale);
 
 module.exports = router;
