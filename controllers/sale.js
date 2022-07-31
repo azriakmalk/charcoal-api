@@ -15,7 +15,7 @@ module.exports = {
       m_users.hasMany(sale, { foreignKey: "id_user" });
       sale.belongsTo(m_users, { foreignKey: "id_user" });
 
-      const sale = await sale.findAll({
+      const sales = await sale.findAll({
         raw: true,
         include: [
           {
@@ -65,7 +65,7 @@ module.exports = {
     }
   },
   saveSale: async (req, res) => {
-    const sale = await sequelize.sale();
+    const sales = await sequelize.sale();
     try {
       const { date, id_item, id_user, weight } = {
         ...req.body,
@@ -94,14 +94,14 @@ module.exports = {
         { returning: true, sale }
       );
 
-      await sale.commit();
+      await sales.commit();
       res.status(200).json({
         message: "Berhasil Save sale",
         saveSale,
       });
     } catch (error) {
       console.log(error);
-      await sale.rollback();
+      await sales.rollback();
       res.status(500).json({
         message: "Error Save sale",
         error,
@@ -157,7 +157,7 @@ module.exports = {
   //     }
   //   },
   deleteSale: async (req, res) => {
-    const sale = await sequelize.sale();
+    const sales = await sequelize.sale();
     try {
       const { id } = req.body;
 
@@ -181,14 +181,14 @@ module.exports = {
         sale,
       });
 
-      await sale.commit();
+      await sales.commit();
       res.status(200).json({
         message: "Berhasil Delete sale",
         deleteSell,
       });
     } catch (error) {
       console.log(error);
-      await sale.rollback();
+      await sales.rollback();
       res.status(500).json({
         message: "Error Delete sale",
         error,
