@@ -3,6 +3,7 @@ const trans_in = require('../models/trans_in');
 const m_item = require('../models/m_item');
 const sequelize = require('sequelize');
 const kiln_process = require('../models/kiln_process');
+const sale = require('../models/sale');
 
 
 module.exports = {
@@ -198,7 +199,7 @@ module.exports = {
     }
   },
   excel_sale: async (req, res) => {
-    try {        
+    try {
         m_item.hasMany(sale, { foreignKey: "id_item" });
         sale.belongsTo(m_item, { foreignKey: "id_item" });
 
