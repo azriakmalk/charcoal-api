@@ -21,7 +21,7 @@ module.exports = {
           {
             model: m_item,
             attributes: [],
-            where: { id_category: 1 },
+            where: { id_category: 2 }, 
           },
           {
             model: m_users,
@@ -48,7 +48,7 @@ module.exports = {
 
       const items = await m_item.findAll({
         raw: true,
-        where: { id_category: 1 },
+        where: { id_category: 2 },
       });
 
       res.status(200).json({
