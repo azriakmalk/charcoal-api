@@ -33,7 +33,7 @@ module.exports = {
           sequelize.col("sale.id_item"),
           sequelize.col("sale.id_user"),
           sequelize.col("sale.weight"),
-          sequelize.col("m_item.name"),
+          [sequelize.col("m_item.name"),'name_item'],
           sequelize.col("m_user.username"),
           [
             sequelize.fn(
@@ -54,7 +54,7 @@ module.exports = {
       res.status(200).json({
         message: "Berhasil Get Sale",
         items,
-        sale,
+        sales,
       });
     } catch (error) {
       console.log(error);
@@ -65,7 +65,7 @@ module.exports = {
     }
   },
   saveSale: async (req, res) => {
-    const sales = await sequelize.sale();
+    const transaction = await sequelize.transaction();
     try {
       const { date, id_item, id_user, weight } = {
         ...req.body,
@@ -85,23 +85,23 @@ module.exports = {
         },
         {
           where: { id: data_storage.id },
-          sale,
+          transaction,
         }
       );
 
       const saveSale = await sale.create(
         { id_item, date, id_user, weight },
-        { returning: true, sale }
+        { returning: true, transaction }
       );
 
-      await sales.commit();
+      await transaction.commit();
       res.status(200).json({
         message: "Berhasil Save sale",
         saveSale,
       });
     } catch (error) {
       console.log(error);
-      await sales.rollback();
+      await transaction.rollback();
       res.status(500).json({
         message: "Error Save sale",
         error,
@@ -157,7 +157,7 @@ module.exports = {
   //     }
   //   },
   deleteSale: async (req, res) => {
-    const sales = await sequelize.sale();
+    const transaction = await sequelize.transaction();
     try {
       const { id } = req.body;
 
@@ -172,23 +172,23 @@ module.exports = {
 
       await storage.update(
         { total_weight },
-        { where: { id: dataStorage.id }, sale }
+        { where: { id: dataStorage.id }, transaction }
       );
 
       const deleteSell = await sale.destroy({
         where: { id },
         returning: true,
-        sale,
+        transaction,
       });
 
-      await sales.commit();
+      await transaction.commit();
       res.status(200).json({
         message: "Berhasil Delete sale",
         deleteSell,
       });
     } catch (error) {
       console.log(error);
-      await sales.rollback();
+      await transaction.rollback();
       res.status(500).json({
         message: "Error Delete sale",
         error,
